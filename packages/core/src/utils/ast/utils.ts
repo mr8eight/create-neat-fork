@@ -1,4 +1,4 @@
-import { parse, ParserPlugin } from "@babel/parser";
+import { parse, ParserOptions } from "@babel/parser";
 import _traverse, { NodePath } from "@babel/traverse";
 import t from "@babel/types";
 import generateDefault from "@babel/generator";
@@ -30,12 +30,6 @@ type Operations = {
   JSXElement?: (path: NodePath<t.JSXElement>, t: BabelTypes) => void;
   JSXAttribute?: (path: NodePath<t.JSXAttribute>, t: BabelTypes) => void;
   Literal?: (path: NodePath<t.Literal>, t: BabelTypes) => void;
-};
-
-// 定义 parserOptions 类型
-type PluginConfig = ParserPlugin;
-type ParserOptions = {
-  plugins: PluginConfig[];
 };
 
 // 创建正确类型的函数引用

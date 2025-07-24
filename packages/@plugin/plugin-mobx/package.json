@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "mobx plugin for react",
   "scripts": {
-    "dev": "tsc -w"
+    "dev": "node dev.js"
   },
   "dependencies": {}
 }

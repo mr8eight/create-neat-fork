@@ -109,7 +109,7 @@ const dependenciesInstall = async (
   try {
     return await Promise.all([devPromise, promise]);
   } catch (err) {
-    console.error(chalk.red("\n❌  安装依赖失败", err));
+    console.error(chalk.red("\n❌  安装依赖失败，请手动安装", err));
   }
 };
 

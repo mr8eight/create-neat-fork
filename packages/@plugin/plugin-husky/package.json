@@ -5,6 +5,6 @@
   "description": "husky plugin for create-neat",
   "main": "index.cjs",
   "scripts": {
-    "dev": "tsc -w"
+    "dev": "node dev.js"
   }
 }

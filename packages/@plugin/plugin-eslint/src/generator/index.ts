@@ -1,13 +1,14 @@
 // plugins/eslint/generator/index.ts
 import type GeneratorAPI from "@src/models/GeneratorAPI.js";
 
-const pluginToBuildToolProtocol = {
-  ADD_COMPILER_CONFIG: "ADD_COMPILER_CONFIG",
-  ENTRY_FILE: "ENTRY_FILE",
-  UPDATE_EXPORT_CONTENT_PROTOCOL: "UPDATE_EXPORT_CONTENT_PROTOCOL",
-  INSERT_IMPORT_PROTOCOL: "INSERT_IMPORT_PROTOCOL",
-  SLOT_CONTENT_PROTOCOL: "SLOT_CONTENT_PROTOCOL",
-};
+// const pluginToBuildToolProtocol = {
+//   ADD_COMPILER_CONFIG: "ADD_COMPILER_CONFIG",
+//   ENTRY_FILE: "ENTRY_FILE",
+//   UPDATE_EXPORT_CONTENT_PROTOCOL: "UPDATE_EXPORT_CONTENT_PROTOCOL",
+//   INSERT_IMPORT_PROTOCOL: "INSERT_IMPORT_PROTOCOL",
+//   SLOT_CONTENT_PROTOCOL: "SLOT_CONTENT_PROTOCOL",
+//   REPLACE_CONTENT_PROTOCOL: "REPLACE_CONTENT_PROTOCOL",
+// };
 
 // 通用 ESLint 配置基座
 const baseESLintConfig = {
@@ -68,6 +69,9 @@ const vueDeps = {
   "eslint-plugin-vue": "^9.9.0",
   "@babel/eslint-parser": "^7.19.1",
 };
+const webpackDeps = {
+  "eslint-webpack-plugin": "^5.0.2",
+};
 
 export default (generatorAPI: GeneratorAPI) => {
   // 根据模板合并配置
@@ -82,6 +86,9 @@ export default (generatorAPI: GeneratorAPI) => {
     Object.assign(eslintConfig, vueExtensions);
     devDependencies = { ...devDependencies, ...vueDeps };
   }
+  if (preset.buildTool === "webpack") {
+    devDependencies = { ...devDependencies, ...webpackDeps };
+  }
   // 注入 package.json 配置
   generatorAPI.extendPackage({
     eslint: eslintConfig,
@@ -91,11 +98,11 @@ export default (generatorAPI: GeneratorAPI) => {
     devDependencies,
   });
   // 调用协议注入构建工具配置（如 webpack 的 eslint-loader）
-  generatorAPI.protocolGenerate({
-    [pluginToBuildToolProtocol.ADD_COMPILER_CONFIG]: {
-      compiler: "eslint",
-      template: preset.template,
-      buildTool: preset.buildTool,
-    },
-  });
+  // generatorAPI.protocolGenerate({
+  //   [pluginToBuildToolProtocol.ADD_COMPILER_CONFIG]: {
+  //     compiler: "eslint",
+  //     template: preset.template,
+  //     buildTool: preset.buildTool,
+  //   },
+  // });
 };

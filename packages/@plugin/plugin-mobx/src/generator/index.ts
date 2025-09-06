@@ -6,6 +6,7 @@ const pluginToTemplateProtocol = {
   UPDATE_EXPORT_CONTENT_PROTOCOL: "UPDATE_EXPORT_CONTENT_PROTOCOL",
   INSERT_IMPORT_PROTOCOL: "INSERT_IMPORT_PROTOCOL",
   SLOT_CONTENT_PROTOCOL: "SLOT_CONTENT_PROTOCOL",
+  REPLACE_CONTENT_PROTOCOL: "REPLACE_CONTENT_PROTOCOL",
 };
 
 export default (generatorAPI: GeneratorAPI) => {
@@ -27,7 +28,7 @@ export default (generatorAPI: GeneratorAPI) => {
             dir: "src/App",
             modules: [
               {
-                name: "observer",
+                name: "{ observer }",
                 from: "mobx-react-lite",
               },
             ],
@@ -36,8 +37,8 @@ export default (generatorAPI: GeneratorAPI) => {
             dir: "src/App",
             modules: [
               {
-                name: "store",
-                from: "./counter",
+                name: "{ store }",
+                from: "../counter",
               },
             ],
           },

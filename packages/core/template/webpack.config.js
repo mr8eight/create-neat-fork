@@ -5,6 +5,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
+<% if( eslint === 'eslint') { %>
+const ESLintPlugin = require('eslint-webpack-plugin');
+<% } %>
 
 <% if (framework === 'react') { %>
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
@@ -99,6 +102,13 @@ module.exports = {
     isProduction && new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:8].css',
     }),
+    <% if (eslint === 'eslint') { %>
+    new ESLintPlugin({
+      extensions: ['js', 'jsx', 'ts', 'tsx'],
+      eslintPath: 'eslint/use-at-your-own-risk',
+      formatter: 'eslint-formatter-friendly'
+    }),
+    <% } %>
     <% if (framework === 'react') { %>
     isDevelopment && new ReactRefreshWebpackPlugin(),
     <% if (language === "typescript") { %>

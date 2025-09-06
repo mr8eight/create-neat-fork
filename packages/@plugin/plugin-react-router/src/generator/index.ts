@@ -17,7 +17,7 @@ const routerPlugin = (generatorAPI: GeneratorAPI) => {
             dir: "src/App",
             modules: [
               {
-                name: "{ BrowserRouter as Router, Switch, Route }",
+                name: "{ BrowserRouter as Router, Route }",
                 from: "react-router-dom",
               },
             ],

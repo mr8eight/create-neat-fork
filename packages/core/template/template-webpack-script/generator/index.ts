@@ -48,6 +48,7 @@ export default (templateAPI: TemplateAPI, template: string) => {
         ...devDependencies,
         "vue-loader": "^17.4.2",
         "vue-style-loader": "^4.1.3",
+        "style-loader": "^4.0.0",
       },
     });
   } else if (template === "react") {

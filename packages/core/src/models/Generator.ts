@@ -56,7 +56,7 @@ const defaultConfigTransforms = {
   }),
   eslint: new ConfigTransform({
     file: {
-      js: [".eslintrc.js"],
+      js: ["eslint.config.js"],
       json: [".eslintrc", ".eslintrc.json"],
       yaml: [".eslintrc.yaml", ".eslintrc.yml"],
     },
@@ -254,10 +254,11 @@ class Generator {
       `packages/core/dist/template/template-${this.buildTool}-script/generator/index.js`,
       "",
     );
+    console.log(buildGenerator);
 
-    if (buildGenerator && typeof buildGenerator === "function") {
+    if (buildGenerator.default && typeof buildGenerator.default === "function") {
       // 将框架需要的依赖加入到package.json中
-      await buildGenerator(this.generatorAPI, this.templateName);
+      await buildGenerator.default(this.generatorAPI, this.templateName);
     }
   }
 
@@ -276,6 +277,7 @@ class Generator {
       bundler: this.buildTool,
       language: "typescript" in this.plugins ? "typescript" : "javascript",
       plugin: "scss" in this.preset.plugins ? "scss" : "",
+      eslint: "eslint" in this.plugins ? "eslint" : "",
       VueEjs: {
         useElementPlus: !!this.preset.plugins["element-plus"],
       },

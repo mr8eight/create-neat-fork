@@ -42,6 +42,7 @@ export default (generatorAPI: GeneratorAPI) => {
   generatorAPI.extendPackage({
     devDependencies: {
       sass: "^1.81.0",
+      "sass-loader": "^16.0.0",
     },
   });
   const fileData = generatorAPI.generator.getFiles().getFileData();
@@ -69,6 +70,17 @@ export default (generatorAPI: GeneratorAPI) => {
             plugins: ["jsx", "typescript"],
           },
         },
+      },
+    },
+    [pluginToTemplateProtocol.REPLACE_CONTENT_PROTOCOL]: {
+      params: {
+        replaceConfig: [
+          {
+            url: "src/App",
+            replacedItem: "@import",
+            replaceContent: "@use",
+          },
+        ],
       },
     },
   });

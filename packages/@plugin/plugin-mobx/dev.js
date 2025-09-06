@@ -41,5 +41,5 @@ tscProcess.on("close", (code) => {
   if (code !== 0) {
     console.error(`tsc 进程异常退出，退出码: ${code}`);
   }
-  process.exit(code);
+  // process.exit(code);
 });

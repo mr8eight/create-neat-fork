@@ -64,7 +64,7 @@ const generateStrictConfig: ConfigGenerator = (generatorAPI, pkgManager) => {
     },
   });
   const files = {
-    ".commitlintrc.js": `module.exports ={
+    ".commitlintrc.js": `module.exports = {
       extends:["@commitlint/config-conventional"],
       rules:{
         'body-max-line-length':[2,'always',100],

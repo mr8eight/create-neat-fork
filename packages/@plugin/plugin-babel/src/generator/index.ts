@@ -6,6 +6,7 @@ const pluginToBuildToolProtocol = {
   UPDATE_EXPORT_CONTENT_PROTOCOL: "UPDATE_EXPORT_CONTENT_PROTOCOL",
   INSERT_IMPORT_PROTOCOL: "INSERT_IMPORT_PROTOCOL",
   SLOT_CONTENT_PROTOCOL: "SLOT_CONTENT_PROTOCOL",
+  REPLACE_CONTENT_PROTOCOL: "REPLACE_CONTENT_PROTOCOL",
 };
 // 通用的Babel预设和插件
 const commonBabelPresets = [
@@ -32,6 +33,7 @@ const commonDependencies = {
 const commonDevDependencies = {
   "@babel/core": "^7.24.7",
   "@babel/preset-env": "^7.24.7",
+  "@babel/runtime": "^7.24.7",
   "@babel/plugin-transform-runtime": "^7.24.7",
   "babel-loader": "^9.1.3",
   "@babel/plugin-syntax-dynamic-import": "^7.8.3",

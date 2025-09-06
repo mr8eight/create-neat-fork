@@ -2,10 +2,10 @@
   "name": "@laconic/plugin-typescript",
   "version": "1.0.0",
   "description": "typescript plugin for create-neat",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.ts",
   "scripts": {
-    "dev": "tsc -w"
+    "dev": "node dev.js"
   },
   "dependencies": {}
 }

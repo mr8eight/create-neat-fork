@@ -37,6 +37,7 @@ const generateCode = generateDefault.default as unknown as GenerateFunction; // 
 
 //正确的 traverse 使用方法
 const traverse = _traverse.default;
+
 /**
  * 封装AST操作的通用函数
  * @param {string} fileContent 源代码字符串

@@ -8,6 +8,8 @@ const globalProtocol = {
   INSERT_IMPORT_PROTOCOL: "INSERT_IMPORT_PROTOCOL",
   /** 对目标文件的指定插槽进行内容注入。 */
   SLOT_CONTENT_PROTOCOL: "SLOT_CONTENT_PROTOCOL",
+  /** 对目标文件的指定内容进行内容替换。 */
+  REPLACE_CONTENT_PROTOCOL: "REPLACE_CONTENT_PROTOCOL",
 } as const;
 
 /** 插件对框架的协议。 */

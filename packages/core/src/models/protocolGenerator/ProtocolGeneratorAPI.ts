@@ -2,7 +2,11 @@ import fs from "fs";
 import path from "path";
 
 import { ProtocolProps } from "../BaseAPI.js";
-import { getTargetFileData, replaceDynamicSlot } from "../../utils/commonUtils.js";
+import {
+  getTargetFileData,
+  replaceDynamicSlot,
+  replaceDynamicContent,
+} from "../../utils/commonUtils.js";
 import {
   createImportDeclaration,
   exportDefaultDeclarationUtils,
@@ -26,9 +30,9 @@ class ProtocolGeneratorAPI {
   }
 
   generator() {
-    for (const protocol in this.protocols) {
-      this[protocol](this.protocols[protocol]);
-    }
+    // for (const protocol in this.protocols) {
+    this[this.protocol](this.protocols[this.protocol]);
+    // }
   }
 
   ENTRY_FILE(params) {
@@ -154,6 +158,28 @@ class ProtocolGeneratorAPI {
         targetFile.describe.fileContent,
         slotName,
         slotContent,
+      );
+    }
+  }
+
+  /**
+   * 对模板文件进行替换操作
+   * @param params - 配置参数
+   * @param params.replaceConfig - 插槽的配置
+   * @param params.replaceConfig.url - 目标文件路径
+   * @param params.replaceConfig.slotName - 插槽名
+   * @param params.replaceConfig.replaceContent - 插入的插槽内容
+   */
+  REPLACE_CONTENT_PROTOCOL({ params }) {
+    const { replaceConfig } = params;
+    const fileData: FileData = this.props.files.getFileData();
+    for (const replaceConfigItem of replaceConfig) {
+      const { url, replacedItem, replaceContent } = replaceConfigItem;
+      const targetFile = getTargetFileData(fileData, url);
+      targetFile.describe.fileContent = replaceDynamicContent(
+        targetFile.describe.fileContent,
+        replacedItem,
+        replaceContent,
       );
     }
   }

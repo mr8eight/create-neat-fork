@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.ts",
   "scripts": {
-    "dev": "node dev.js"
+    "dev": "node -e \"import('../../../scripts/dev.js').then(module => module.default(process.cwd()))\""
   },
   "dependencies": {}
 }

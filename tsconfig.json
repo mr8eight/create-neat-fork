@@ -28,6 +28,6 @@
       "es2017"
     ]
   },
-  "include": ["packages"],
+  "include": ["packages", "scripts/dev.js"],
   "exclude": ["node_modules", "apps"]
 }

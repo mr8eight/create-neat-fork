@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "mobx plugin for react",
   "scripts": {
-    "dev": "node dev.js"
+    "dev": "node -e \"import('../../../scripts/dev.js').then(module => module.default(process.cwd()))\""
   },
   "dependencies": {}
 }
